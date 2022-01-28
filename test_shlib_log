@@ -1,0 +1,21 @@
+#!/bin/bash
+
+. ./shlib_log_config
+. ./shlib_log
+
+n=10
+c='c'
+s="hello"
+f=3.1415
+
+
+main()
+{
+    logi "%-8d %-8c %-8s %-4.4f" ${n} ${c} ${s} ${f}
+    logw "%-8d %-8c %-8s %-4.4f" 233 '2' "233" 2.33
+}
+
+
+main
+
+

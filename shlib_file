@@ -1,0 +1,72 @@
+#author:lmr
+#date  :2022-01-27
+#brief :shell library of file functions
+#notes :base on !!!bash!!!
+
+if [ ${_include_shlib_file} ]
+then
+    return 0
+fi
+
+. ./shlib_log
+
+_include_shlib_file=1
+
+echo "include shlib file"
+
+
+#brief:get all files
+#param:path
+#retrn:files' name
+file_get_files()
+{
+    if [ ! -d $1 ]
+    then
+        logw "$1 isn't valid directory !"
+        return
+    fi
+
+    all=""
+
+    for files in $(ls $1)
+    do
+        logi ${files}
+        if [ -f "$1${files}" ]
+        then
+            if [ ${all} ];then all="${all} ";fi
+            all=${all}${files}
+        fi
+    done
+
+    echo ${all}
+    logi "path:$1,files:${all}"
+}
+
+
+
+#brief:get all directory
+#param:path
+#retrn:directories' name
+file_get_dirs()
+{
+    if [ ! -d $1 ]
+    then
+        logw "$1 isn't valid directory !"
+        return
+    fi
+
+    all=""
+
+    for dirs in $(ls $1)
+    do
+        logi ${dirs}
+        if [ -d "$1${dirs}" ]
+        then
+            if [ ${all} ];then all="${all} ";fi
+            all=${all}${dirs}
+        fi
+    done
+
+    echo ${all}
+    logi "path:$1,dirs:${all}"
+}

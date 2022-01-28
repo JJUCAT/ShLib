@@ -1,0 +1,54 @@
+
+if [ ${_include_shlib_log_config} ];then
+return 0
+fi
+
+_include_shlib_log_config=1
+
+echo "include shlib log config"
+
+#shlib_log color config
+COLOR_NONE=""
+COLOR_BLACK="\033[30m"
+COLOR_RED="\033[31m"
+COLOR_GREEN="\033[32m"
+COLOR_YELLOW="\033[33m"
+COLOR_BLUE="\033[34m"
+COLOR_PURPLE="\033[35m"
+COLOR_SKYBLUE="\033[36m"
+COLOR_WHITE="\033[37m"
+
+COLOR_INFO=${COLOR_WHITE}
+COLOR_WARN=${COLOR_YELLOW}
+COLOR_ERROR=${COLOR_RED}
+
+
+
+#shlib_log tag config
+TAG_NONE=""
+TAG_INFO="[I]"
+TAG_WARN="[W]"
+TAG_ERROR="[E]"
+
+
+
+#shlib_log filename & line config
+<< EOF
+#how config line
+NAME_LINE_DISABLE=""
+NAME_LINE_ENABLE="[$0,$BASH_LINENO]"
+
+NAME_LINE=${NAME_LINE_ENABLE}
+EOF
+
+
+
+#shlib_log time config
+TIME_NONE=""
+TIME_LONG="[$(date +%Y-%m-%d-%T)]"
+TIME_SHORT="[$(date +%T)]"
+TIME_SECOND="[$(date +%s)]"
+TIME=${TIME_LONG}
+
+
+

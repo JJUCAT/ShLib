@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. ./shlib_file
+
+
+file_get_files ~/Desktop/
+file_get_dirs ~/Desktop/
+
+
+
+

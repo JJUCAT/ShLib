@@ -1,0 +1,37 @@
+#author:lmr
+#date  :2022-01-26
+#brief :shell library of log functions
+#notes :base on !!!bash!!!
+
+if [ ${_include_shlib_log} ];then
+return 0
+fi
+
+. ./shlib_log_config
+
+_include_shlib_log=1
+
+echo "include shlib log"
+
+
+
+
+logi()
+{
+    printf "${COLOR_INFO}${TAG_INFO}[$0,$BASH_LINENO]${TIME}$1\n" "${@:2}"
+}
+
+logw()
+{
+    printf "${COLOR_WARN}${TAG_WARN}[$0,$BASH_LINENO]${TIME}$1\n" "${@:2}"
+}
+
+
+loge()
+{
+    printf "${COLOR_ERROR}${TAG_ERROR}[$0,$BASH_LINENO]${TIME}$1\n" "${@:2}"
+}
+
+
+
+
