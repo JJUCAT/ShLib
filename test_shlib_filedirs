@@ -3,7 +3,7 @@
 . ./shlib_filedirs
 
 
-shlib_get_fd ~/Desktop/ fd
+shlib_get_fd ~/Desktop/ dfe wula
 
 
 
