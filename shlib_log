@@ -14,22 +14,20 @@ _include_shlib_log=1
 echo "include shlib log"
 
 
-
-
 logi()
 {
-    printf "${COLOR_INFO}${TAG_INFO}[$0,$BASH_LINENO]${TIME}$1\n" "${@:2}"
+    printf "${COLOR_INFO}${TAG_INFO}[$0,${FUNCNAME[1]},$BASH_LINENO]${TIME}$1\n" "${@:2}"
 }
 
 logw()
 {
-    printf "${COLOR_WARN}${TAG_WARN}[$0,$BASH_LINENO]${TIME}$1\n" "${@:2}"
+    printf "${COLOR_WARN}${TAG_WARN}[$0,${FUNCNAME[1]},$BASH_LINENO]${TIME}$1\n" "${@:2}"
 }
 
 
 loge()
 {
-    printf "${COLOR_ERROR}${TAG_ERROR}[$0,$BASH_LINENO]${TIME}$1\n" "${@:2}"
+    printf "${COLOR_ERROR}${TAG_ERROR}[$0,${FUNCNAME[1]},$BASH_LINENO]${TIME}$1\n" "${@:2}"
 }
 
 

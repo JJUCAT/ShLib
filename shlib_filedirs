@@ -1,0 +1,87 @@
+#author:lmr
+#date  :2022-01-27
+#brief :shell library of file and diretory
+#notes :base on !!!bash!!!
+
+if [ ${_include_shlib_filedirs} ]
+then
+    return 0
+fi
+
+. ./shlib_log
+
+_include_shlib_filedirs=1
+
+echo "include shlib file directory"
+
+
+#brief: get files and folders
+#param: path
+#param: cmd
+#   @f: handle file
+#   @d: handle directory
+#   @i: include follow args
+#   @e: exclude follow args
+#param: args
+#retrn: files and folders
+shlib_get_fd()
+{
+    #check path valid
+    if [ ! -d $1 ]; then
+        loge "$1 isn't valid path !"
+        return
+    fi
+    
+    #check cmd valid
+    if [ $# -gt 1 ]; then
+        argcnt=`expr $# - 2`
+        cmd="$2"
+        for i in $(seq 1 ${#tmp})
+        do
+            logi "${i},${tmp:i-1:1}"
+            case ${tmp:i-1:1} in
+            "f") cmd_f=1; logi "cmd f enable"
+                ;;
+            "d") cmd_d=1; logi "cmd d enable"
+                ;;
+            "i") cmd_i=1; cmd_e=0; logi "cmd i enable"
+                ;;
+            "e") cmd_e=1; cmd_i=0; logi "cmd e enable"
+                ;;
+            *) logw "error cmd: ${tmp:i-1:1}"
+                ;;
+            esac
+        done
+        
+        echo ${cmd}
+        args=("${@:3}")
+    else
+        loge "input param cnt: $#, error !"
+        return
+    fi
+
+
+
+    all=""
+    for files in $(ls $1)
+    do
+        logi ${files}
+        if [ -f "$1${files}" ]
+        then
+            if [ ${all} ];then all="${all} ";fi
+            all=${all}${files}
+        fi
+    done
+
+    logi "path:$1,files:${all}"
+    echo ${all}
+}
+
+
+
+
+
+
+
+
+
